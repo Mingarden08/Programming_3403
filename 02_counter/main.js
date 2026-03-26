@@ -1,6 +1,7 @@
 // let button = document.getElementById("button");
 let number = document.getElementById("number");
 let count = 0;
+number.innerHTML = count;
 // const resultH1 = document.getElementById("result");
 
 // button.addEventListener('click', () => {
