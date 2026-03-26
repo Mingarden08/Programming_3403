@@ -14,7 +14,7 @@ number.innerHTML = count;
 //     number.textContent = tmp + 1;
 // };
 
-function plus() {
-    count++;
+function plus(Countvalue = 1) {
+    count += Countvalue;
     number.innerHTML = count;
 }
