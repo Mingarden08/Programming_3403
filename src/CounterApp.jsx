@@ -1,3 +1,5 @@
+//https://programming3403.jeongone-min.workers.dev/
+
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
@@ -9,6 +11,13 @@ function CounterApp() {
 
   const [count, setCount] = useState(0)
 
+  function plusMax10() {
+    setCount((count) => {
+      if (count >= 10) return count;
+      return count + 1;
+    })
+  }
+
   return (
     <>
     <h1>{count}</h1>
@@ -16,6 +25,10 @@ function CounterApp() {
     <button onClick={() => setCount((count) => count + 2)}>+2</button>
     <button onClick={() => setCount((count) => count - 1)}>-</button>
     <button onClick={() => setCount(0)}>reset</button>
+    <button onClick={() => setCount((count) => count >= 10 ? count : count + 1)}>+</button> 
+    <button onClick={() => setCount((count) => Math.min(count + 1, 10))}>+</button> 
+    <button onClick={() => plusMax10()}>+</button> 
+    <button onClick={plusMax10}>+</button> 
       {/* <button
         className="counter"
         onClick={() => setCount((count) => count + 1)}
