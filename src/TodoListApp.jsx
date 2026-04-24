@@ -1,32 +1,53 @@
-import './todolist.css';
-import TodoHeader from './components/TodoHeader.jsx';
-import TodoAdder from './components/TodoAdder.jsx';
-import TodoList from './components/TodoList.jsx';
-import { useState } from 'react';
+import { useState } from 'react'
+import './todolist.css'
+// import TodoItemEmpty from './components/TodoItemEmpty.jsx';
+// import Button from './components/Button.jsx';
+// import Checkbox from './components/Checkbox.jsx'
+import TodoHeader from './components/TodoHeader.jsx'
+import TodoAdder from './components/TodoAdder.jsx'
+// import TodoItem from './components/TodoItem.jsx'
+import TodoList from './components/TodoList.jsx'
 
 class Todo {
     constructor(text) {
-        this.id = Date.now();       // PK
-        this.text = text;           // 내용
-        this.isCompleted = false;   // 완료 여부
+        this.id = Date.now(); //id: 고유의 값. new Date().getTime()
+        this.text = text;     //할일 내용
+        this.isCompleted = false; //완료 여부: 미완
     }
 }
 
 function TodoListApp() {
-    const [todos, setTodos] = useState([]); // 할일 목록 저장 state
+    const [todos, setTodos] = useState([]); //할일 목록 저장 state, 기본값: 빈 리스트
     function addTodo(text) {
         setTodos((todos) => [
+            //이전todos 가져오자
+            //하나씩 꺼내서 새로운 리스트 만들자
             ...todos,
+            //뒤에 new Todo 만들어서 추가하자
             new Todo(text)
         ]);
     }
+    // function addTodo(text) { setTodos((todos) => [...todos, new Todo(text)])}
+    function toggleTodo(id) {
+        // todos에서 하나씩 꺼내어 todo의 id가 id와 같으면, !이전 isCompleted
+        setTodos((todos) =>
+            todos.map((todo) =>
+                todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+            )
+        )
+    }
+    function deleteTodo(id) {
+        // todos 하나씩 꺼내어 todo의 id가 다른 todo만 남기자
+        setTodos((todos) =>
+            todos.filter((todo) => todo.id !== id)
+        )
+    }
     return (
         <div className="todo">
-            <TodoHeader/>
-            <TodoAdder addTodo={ addTodo } />
-            <TodoList todos={todos} />
+            <TodoHeader />
+            <TodoAdder addTodo={addTodo} />
+            <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
         </div>
     )
 }
-
 export default TodoListApp;
