@@ -28,6 +28,7 @@ export default function TodoItem({ todo, toggleTodo, deleteTodo, editTodo }) {
             {!isEditing &&
                 <Checkbox
                     id={todo.id}
+                    checked={todo.isCompleted}
                     onChange={() => toggleTodo(todo.id)}
                 >{todo.text}</Checkbox>
             }

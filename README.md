@@ -29,3 +29,14 @@ npm create vite@latest .
 - LocalStorage, `useEffect(명령어, [변할값])`
 - `styl={{}}`
 - HomeApp: state를 이용해서 다른 컴포넌트 표시하자
+- `npm install react-router-dom`
+- ```javascript
+    <BrowserRouter>
+        <Routes> 
+            <Route path="/" element={} />
+        </Routes>
+    </BrowserRouter>
+    ```
+- ```javascript
+    <Link to="/"></Link>
+    ```
